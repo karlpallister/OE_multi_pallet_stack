@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+  	<!--Top level menus-->
+		<menuitem id="multi_pallet_stack.data" name="Data" parent="" sequence="400" groups="base.group_no_one"/>
+		<menuitem id="multi_pallet_stack.static_data" name="Static Data" parent="multi_pallet_stack.data" sequence="10"/>
+		<menuitem id="multi_pallet_stack.transactional_data" name="Transactional Data" parent="multi_pallet_stack.data" sequence="20"/>
+		
+		<!--Pallet Types-->
+		<menuitem id="pallet_types" name="Pallet Types" parent="mrp.menu_pm_resources_config" sequence="70"/>
+
+		<record id="pallet_types_tree" model="ir.ui.view">
+            <field name="name">pallet.types.tree</field>
+            <field name="model">pallet_types</field>
+            <field name="type">tree</field>
+			<field name="priority" eval="1" />
+			<field name="arch" type="xml">
+				<tree string="Pallet Types" editable="top">
+					<field name="name"/>
+					<field name="length"/>
+					<field name="width"/>
+					<field name="height"/>
+					<field name="weight"/>
+					<field name="active"/>
+				</tree>
+            </field>
+        </record>
+		
+		<!--Pallet Stack Layout-->
+		<menuitem id="pallet_stack_layout" name="Pallet Stack Layouts" parent="mrp.menu_pm_resources_config" sequence="80"/>
+
+		<record id="pallet_stack_layout_tree" model="ir.ui.view">
+            <field name="name">pallet.stack.layout.tree</field>
+            <field name="model">pallet_stack_layout</field>
+            <field name="type">tree</field>
+			<field name="priority" eval="1" />
+			<field name="arch" type="xml">
+				<tree string="Pallet Stack Layouts">
+					<field name="name"/>
+					<field name="pallet_type_id"/>
+					<field name="layer_qty"/>
+				</tree>
+            </field>
+        </record>
+		
+        <record id="pallet_stack_layout_form" model="ir.ui.view">
+            <field name="name">pallet.stack.layout.form</field>
+            <field name="model">pallet_stack_layout</field>
+            <field name="type">form</field>
+			<field name="priority" eval="1" />
+			<field name="arch" type="xml">
+				<form string="Pallet Stack Layout">
+					<group col="2">
+						<field name="name"/>
+						<field name="active"/>
+						<field name="program"/>
+						<field name="pallet_type_id"/>
+						<field name="layout_diagram" colspan="2"/>
+						<field name="slipsheeted"/>
+						<field name="layer_qty"/>
+						<field name="layer_height"/>
+						<field name="layer_ids"/>
+					</group>
+				</form>
+            </field>
+        </record>
+
+		<!--Pallet Stack Layers-->
+		<menuitem id="pallet_stack_layers" name="Pallet Stack Layers" parent="multi_pallet_stack.static_data" sequence="40"/>
+		<!--TODO Add views to suit-->
+
+		<!--Sale Order Pallet Stack-->
+		<menuitem id="sale_order_pallet_stack" name="Processed Pallet Stacks" parent="multi_pallet_stack.transactional_data" sequence="10"/>
+		<!--TODO Add views to suit-->
+
+    </data>
+</openerp>
